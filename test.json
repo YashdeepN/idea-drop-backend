@@ -1,0 +1,138 @@
+[
+  {
+    "_id": "68a471efdf68862938c7cbc1",
+    "title": "Airbnb for Garages",
+    "summary": "Rent out your garage for storage or parking.",
+    "description": "This platform allows homeowners to monetize unused garage space by offering it for short- or long-term storage, parking, or even micro-offices. Think Airbnb, but for underutilized residential garages. It could also provide insurance, keyless access, and a rating system for trust and safety.",
+    "tags": ["real estate", "sharing economy"]
+  },
+  {
+    "_id": "68a471efdf68862938c7cbc2",
+    "title": "Local Farm Box Subscription",
+    "summary": "Weekly produce delivery from nearby farms.",
+    "description": "A subscription box service connecting local farmers with urban dwellers looking for fresh produce. Customers receive a curated box each week containing fruits, vegetables, and artisanal goods sourced directly from nearby growers. It encourages local commerce, healthy eating, and seasonal variety.",
+    "tags": ["subscription", "local", "marketplace"],
+    "createdAt": "2025-04-28T14:30:00.000Z"
+  },
+  {
+    "_id": "68a471efdf68862938c7cbc3",
+    "title": "Micro-SaaS for Freelancers1",
+    "summary": "A personal dashboard to manage freelance work.",
+    "description": "A lightweight SaaS platform that helps freelancers track their clients, invoices, contracts, and income in one place. Built specifically for solopreneurs who don’t need bulky CRM tools but want visibility into their business and finances. Includes tax estimates, recurring invoice reminders, and expense logging.",
+    "tags": ["freelance", "saas", "tools"]
+  },
+  {
+    "_id": "68a471efdf68862938c7cbc4",
+    "title": "Virtual Closet Organizer",
+    "summary": "Your wardrobe, digitized and AI-personalized.",
+    "description": "An app that lets users take pictures of their clothes and upload them into a virtual closet. The app uses AI to suggest daily outfits based on the weather, calendar events, and style preferences. Features might include travel packing lists, outfit tracking, and a sharing option for friends to browse each other's closets.",
+    "tags": ["fashion", "ai", "productivity"],
+    "createdAt": "2025-04-25T16:45:00.000Z"
+  },
+  {
+    "_id": "68a471efdf68862938c7cbc5",
+    "title": "Pet Sitter Marketplace",
+    "summary": "Book trusted sitters and walkers in your area.",
+    "description": "A two-sided platform where pet owners can find, book, and review local pet sitters and dog walkers. All providers go through background checks and can create profiles with availability, pricing, and services offered. Includes messaging, GPS walk tracking, and emergency contact sharing.",
+    "tags": ["pets", "marketplace", "local"],
+    "createdAt": "2025-04-26T11:20:00.000Z"
+  },
+  {
+    "_id": "68a471efdf68862938c7cbc6",
+    "title": "Remote Job Recommender",
+    "summary": "Smart job matches using your online presence.",
+    "description": "An AI-powered platform that analyzes your GitHub, LinkedIn, resume, and public portfolios to find remote jobs that align with your skills and goals. Users receive a daily or weekly feed of tailored listings, and the system learns from their clicks and applications to improve recommendations over time.",
+    "tags": ["jobs", "remote", "ai"],
+    "createdAt": "2025-04-24T13:10:00.000Z"
+  },
+  {
+    "_id": "68a54e3bca35d12776316e42",
+    "title": "The title of my first Idea",
+    "summary": "This is the summary of my first idea.",
+    "description": "This is the description of my idea",
+    "tags": ["ai", "react", "development", "fullstack"],
+    "createdAt": "2025-08-20T04:25:31.731Z",
+    "updatedAt": "2025-08-20T04:25:31.731Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a54e5fca35d12776316e45",
+    "title": "The title of my first Idea",
+    "summary": "This is the summary of my first idea.",
+    "description": "This is the description of my idea",
+    "tags": ["ai", "react", "development", "fullstack"],
+    "createdAt": "2025-08-20T04:26:07.949Z",
+    "updatedAt": "2025-08-20T04:26:07.949Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a54e79851d95a9f41a50de",
+    "title": "The title of my first Idea",
+    "summary": "This is the summary of my first idea.",
+    "description": "This is the description of my idea",
+    "tags": ["ai", "react", "development", "fullstack"],
+    "createdAt": "2025-08-20T04:26:33.237Z",
+    "updatedAt": "2025-08-20T04:26:33.237Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a54eaa4a2417c972189bae",
+    "title": "The title of my first Idea",
+    "summary": "This is the summary of my first idea.",
+    "description": "This is the description of my idea",
+    "tags": [],
+    "createdAt": "2025-08-20T04:27:22.599Z",
+    "updatedAt": "2025-08-20T04:27:22.599Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a54fb64a2417c972189bb4",
+    "title": "my new Idea",
+    "summary": "The summary of my new idea",
+    "description": "The description of my new idea",
+    "tags": [],
+    "createdAt": "2025-08-20T04:31:50.066Z",
+    "updatedAt": "2025-08-20T04:31:50.066Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a54fdef00089ec099c99b3",
+    "title": "my new Idea",
+    "summary": "The summary of my new idea",
+    "description": "The description of my new idea",
+    "tags": [],
+    "createdAt": "2025-08-20T04:32:30.574Z",
+    "updatedAt": "2025-08-20T04:32:30.574Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a55012f00089ec099c99b6",
+    "title": "my new Idea",
+    "summary": "The summary of my new idea",
+    "description": "The description of my new idea",
+    "tags": [],
+    "createdAt": "2025-08-20T04:33:22.285Z",
+    "updatedAt": "2025-08-20T04:33:22.285Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a55063e1b72178752feca0",
+    "title": "my new Idea",
+    "summary": "The summary of my new idea",
+    "description": "The description of my new idea",
+    "tags": [],
+    "createdAt": "2025-08-20T04:34:43.941Z",
+    "updatedAt": "2025-08-20T04:34:43.941Z",
+    "__v": 0
+  },
+  {
+    "_id": "68a5511d1a3b89be9d13c395",
+    "title": "The title of my new Idea",
+    "summary": "The summary of my new idea",
+    "description": "The description of my new idea",
+    "tags": ["web", "ai", "react"],
+    "createdAt": "2025-08-20T04:37:49.060Z",
+    "updatedAt": "2025-08-20T04:37:49.060Z",
+    "__v": 0
+  }
+]
