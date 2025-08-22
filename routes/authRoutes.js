@@ -2,6 +2,8 @@ import express from "express";
 
 import User from "../models/User.js";
 import { generateToken } from "../utils/generateToken.js";
+import { jwtVerify } from "jose";
+import { JWT_SECRET } from "../utils/getJWTSecret.js";
 
 const router = express.Router();
 
@@ -11,7 +13,7 @@ const router = express.Router();
 
 router.post("/register", async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body || {};
 
     if (!name || !email || !password) {
       res.status(400); // Bad request
@@ -29,7 +31,7 @@ router.post("/register", async (req, res, next) => {
 
     // Create tokens
     const payload = { userId: user._id.toString() };
-    const accessToken = await generateToken(payload, "1m");
+    const accessToken = await generateToken(payload, "5m");
     const refreshToken = await generateToken(payload, "30d");
 
     // Set refreshToken in HTTP-Only cookie:--
@@ -139,7 +141,7 @@ router.post("/login", async (req, res, next) => {
 
     // Create Tokens
     const payload = { userId: user._id.toString() };
-    const accessToken = await generateToken(payload, "1m");
+    const accessToken = await generateToken(payload, "5m");
     const refreshToken = await generateToken(payload, "30d");
 
     // Set refresh token in HTTP-Only cookie
@@ -176,6 +178,51 @@ router.post("/logout", (req, res) => {
   });
 
   res.status(200).json({ message: "Loggged out successfully" });
+});
+
+// @route          POST api/auth/refresh
+// @description    Generate new access token from refresh token
+// @access         Public (Needs valid refresh toekn in cookie)
+
+router.post("/refresh", async (req, res, next) => {
+  try {
+    const token = req.cookies?.refreshToken;
+    console.log("Refreshing Token...");
+
+    if (!token) {
+      const e = new Error("No refresh token");
+      e.statuscode = 401;
+      throw e;
+      //   res.status(401);
+      //   throw new Error("No refresh token");
+    }
+
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+
+    const user = await User.findById(payload.userId);
+
+    if (!user) {
+      res.status(401);
+      throw new Error("No user");
+    }
+
+    const newAccessToken = await generateToken(
+      { userId: user._id.toString() },
+      "1m"
+    );
+
+    res.json({
+      accessToken: newAccessToken,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    res.status(401);
+    next();
+  }
 });
 
 export default router;

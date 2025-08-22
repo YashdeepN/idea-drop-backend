@@ -1,6 +1,7 @@
 import express from "express";
 import Idea from "../models/Idea.js";
 import mongoose from "mongoose";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -52,9 +53,13 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+// @route         POST /api/ideas
+// @description   Create new idea
+// @access        Public
+
+router.post("/", protect, async (req, res, next) => {
   try {
-    const { title, summary, description, tags } = req.body;
+    const { title, summary, description, tags } = req.body || {};
 
     if (!title?.trim() || !summary?.trim() || !description?.trim()) {
       res.status(400);
@@ -74,6 +79,7 @@ router.post("/", async (req, res, next) => {
           : Array.isArray(tags)
           ? tags
           : [],
+      user: req.user.id,
     });
 
     const savedIdea = await newIdea.save();
@@ -87,7 +93,7 @@ router.post("/", async (req, res, next) => {
 // @description   delete a single idea
 // @access        Public
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", protect, async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -96,11 +102,27 @@ router.delete("/:id", async (req, res, next) => {
       throw new Error("Idea Not Found");
     }
 
-    const idea = await Idea.findByIdAndDelete(id);
+    // const idea = await Idea.findByIdAndDelete(id);
+    // if (!idea) {
+    //   res.status(404);
+    //   throw new Error("Idea Not Found");
+    // }
+
+    const idea = await Idea.findById(id);
+
     if (!idea) {
       res.status(404);
       throw new Error("Idea Not Found");
     }
+
+    // Check if user owns idea
+    if (idea.user.toString() !== req.user._id.toString()) {
+      res.status(403);
+      throw new Error("Not authorized to delete this idea");
+    }
+
+    await idea.deleteOne();
+
     res.json({
       message: "Idea deleted successfullyt.",
     });
@@ -115,7 +137,7 @@ router.delete("/:id", async (req, res, next) => {
 // @description   Update a single idea
 // @access        Public
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", protect, async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -124,29 +146,56 @@ router.put("/:id", async (req, res, next) => {
       throw new Error("Idea Not Found");
     }
 
-    const { title, summary, description, tags } = req.body;
+    const idea = await Idea.findById(id);
+
+    if (!idea) {
+      res.status(404);
+      throw new Error("Idea not found");
+    }
+
+    // Check if use owns idea
+    if (idea.user.toString() !== req.user._id.toString()) {
+      res.status(403);
+      throw new Error("Not authorized to update this idea");
+    }
+
+    const { title, summary, description, tags } = req.body || {};
 
     if (!title?.trim() || !summary?.trim() || !description?.trim()) {
       res.status(400);
       throw new Error("Title, summary and description are required");
     }
 
-    const updatedIdea = await Idea.findByIdAndUpdate(
-      id,
-      {
-        title,
-        summary,
-        description,
-        tags: Array.isArray(tags) ? tags : tags.split(",").map((t) => t.trim()),
-      },
-      { new: true, runValidators: true }
-    );
+    // const updatedIdea = await Idea.findByIdAndUpdate(
+    //   id,
+    //   {
+    //     title,
+    //     summary,
+    //     description,
+    //     tags: Array.isArray(tags) ? tags : tags.split(",").map((t) => t.trim()),
+    //   },
+    //   { new: true, runValidators: true }
+    // );
 
-    if (!updatedIdea) {
-      res.status(404);
-      throw new Error("Idea not found");
-    }
-    console.log(updatedIdea);
+    // if (!updatedIdea) {
+    //   res.status(404);
+    //   throw new Error("Idea not found");
+    // }
+    // console.log(updatedIdea);
+
+    idea.title = title;
+    idea.summary = summary;
+    idea.description = description;
+    idea.tags = Array.isArray(tags)
+      ? tags
+      : typeof tags === "string"
+      ? tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : [];
+
+    const updatedIdea = await idea.save();
 
     res.json(updatedIdea);
   } catch (err) {
